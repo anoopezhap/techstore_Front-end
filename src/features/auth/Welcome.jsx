@@ -15,7 +15,13 @@ export default function Welcome() {
         <Link to="/dash/notes">View techNotes</Link>
       </p>
       <p>
+        <Link to="/dash/notes/new">Add new techNotes</Link>
+      </p>
+      <p>
         <Link to="/dash/users">View User Settings</Link>
+      </p>
+      <p>
+        <Link to="/dash/users/new">Add new User </Link>
       </p>
     </section>
   );
