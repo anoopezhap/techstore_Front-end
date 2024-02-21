@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { ROLES } from "./../../config/roles";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteUser, updateUser } from "./queries";
+import useToken from "../../hooks/useToken";
 
 const USER_REGEX = /^[A-z]{3,20}$/;
 const PWD_REGEX = /^[A-z0-9!@#$%]{4,12}$/;
@@ -14,6 +15,7 @@ export default function EditUserForm({ user }) {
 
   //   console.log("inside edit form");
   //console.log(user[0]);
+  useToken();
 
   const queryClient = useQueryClient();
   const navigate = useNavigate();

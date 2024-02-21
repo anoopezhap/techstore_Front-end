@@ -5,9 +5,12 @@ import { getAllUsers } from "../users/queries";
 import { deleteNote, updateNote } from "./queries";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSave, faTrashCan } from "@fortawesome/free-solid-svg-icons";
+import useToken from "../../hooks/useToken";
 
 export default function EditNoteForm({ editNote }) {
   //console.log("inside edit note form", editNote);
+
+  useToken();
 
   const queryClient = useQueryClient();
 

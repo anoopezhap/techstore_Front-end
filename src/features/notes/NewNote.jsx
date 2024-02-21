@@ -1,8 +1,11 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
 import NewNoteForm from "./NewNoteForm";
 import { getAllUsers } from "./../users/queries";
+import useToken from "../../hooks/useToken";
 
 export default function NewNote() {
+  useToken();
+
   const { isLoading, isError, data, error } = useQuery({
     queryKey: ["users"],
     queryFn: getAllUsers,
@@ -22,6 +25,14 @@ export default function NewNote() {
   }
 
   //console.log("list", userList);
+
+  if (isLoading) {
+    return <p>Is Loading</p>;
+  }
+
+  if (isError) {
+    return <p>Not Currently Available</p>;
+  }
 
   return (
     <div>

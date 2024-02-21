@@ -1,6 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faPenToSquare } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate } from "react-router-dom";
+import useToken from "../../hooks/useToken";
 
 export default function Note({ note }) {
   const {
@@ -16,6 +17,7 @@ export default function Note({ note }) {
   } = note;
 
   const naviagte = useNavigate();
+  useToken();
 
   const created = new Date(createdAt).toLocaleString("en-US", {
     day: "numeric",

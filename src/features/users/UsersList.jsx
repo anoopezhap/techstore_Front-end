@@ -1,8 +1,12 @@
 import { useQuery } from "@tanstack/react-query";
 import { getAllUsers } from "./queries";
 import User from "./User";
+import { useSelector } from "react-redux";
+import useToken from "../../hooks/useToken";
 
 export default function UsersList() {
+  useToken();
+
   const { isLoading, isError, data, error } = useQuery({
     queryKey: ["users"],
     queryFn: getAllUsers,

@@ -5,6 +5,7 @@ import { useNavigate } from "react-router-dom";
 import { ROLES } from "./../../config/roles";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createUser } from "./queries";
+import useToken from "../../hooks/useToken";
 
 const USER_REGEX = /^[A-z]{3,20}$/;
 const PWD_REGEX = /^[A-z0-9!@#$%]{4,12}$/;
@@ -12,6 +13,8 @@ const PWD_REGEX = /^[A-z0-9!@#$%]{4,12}$/;
 export default function NewUserForm() {
   const queryClient = useQueryClient();
   const navigate = useNavigate();
+
+  useToken();
 
   const { mutate, isLoading, isError, error } = useMutation({
     mutationFn: ({ username, password, roles }) =>

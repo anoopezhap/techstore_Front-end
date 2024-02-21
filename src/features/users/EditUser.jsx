@@ -2,17 +2,21 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import EditUserForm from "./EditUserForm";
 import { getAllUsers } from "./queries";
+import { useSelector } from "react-redux";
+import useToken from "../../hooks/useToken";
 
 export default function EditUser() {
   const { id } = useParams();
+  const { token } = useSelector((state) => state.auth);
 
+  useToken();
   // const queryClient = useQueryClient();
 
   // const data = queryClient.getQueryData(["users"]);
 
   const { isLoading, isError, data, error } = useQuery({
     queryKey: ["users"],
-    queryFn: getAllUsers,
+    queryFn: () => getAllUsers(token),
   });
 
   // const { data } = useQuery({

@@ -30,7 +30,7 @@ export default function Login() {
     onSuccess: (data) => {
       const { accessToken } = data.data;
 
-      dispatch(setCredentials({ accessToken }));
+      dispatch(setCredentials(accessToken));
       setUsername("");
       setPassword("");
       navigate("/dash");

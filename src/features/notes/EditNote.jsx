@@ -2,9 +2,11 @@ import { useQuery } from "@tanstack/react-query";
 import { useParams } from "react-router-dom";
 import { getAllNotes } from "./queries";
 import EditNoteForm from "./EditNoteForm";
+import useToken from "../../hooks/useToken";
 
 export default function EditNote() {
   const { id } = useParams();
+  useToken();
 
   const { isLoading, isError, data, error } = useQuery({
     queryKey: ["notes"],

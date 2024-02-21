@@ -4,10 +4,12 @@ import { useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSave } from "@fortawesome/free-solid-svg-icons";
 import { createNewNote } from "./queries";
+import useToken from "../../hooks/useToken";
 
 export default function NewNoteForm({ userList }) {
   //console.log("userlist", userList);
 
+  useToken();
   const queryClient = useQueryClient();
 
   const { mutate, isLoading, isError, error } = useMutation({

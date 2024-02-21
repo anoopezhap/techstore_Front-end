@@ -1,8 +1,10 @@
 import { useQuery } from "@tanstack/react-query";
 import { getAllNotes } from "./queries";
 import Note from "./Note";
+import useToken from "../../hooks/useToken";
 
 export default function NotesList() {
+  useToken();
   const { isLoading, isError, data, error } = useQuery({
     queryKey: ["notes"],
     queryFn: getAllNotes,
