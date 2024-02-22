@@ -27,14 +27,15 @@ const queryClient = new QueryClient({
       },
     },
   },
-  queryCache: new QueryCache({
-    onError: (err) => {
-      if (err?.response?.status === 403) {
-        console.log("inside cache error");
-        refresh();
-      }
-    },
-  }),
+  // queryCache: new QueryCache({
+  //   onError: (err) => {
+  //     if (err?.response?.status === 403) {
+  //       console.log("inside cache error");
+  //       const access = refresh();
+  //       console.log("inside query cache", access);
+  //     }
+  //   },
+  // }),
 });
 
 ReactDOM.createRoot(document.getElementById("root")).render(

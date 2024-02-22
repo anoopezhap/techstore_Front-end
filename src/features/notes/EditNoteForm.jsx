@@ -6,11 +6,14 @@ import { deleteNote, updateNote } from "./queries";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSave, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import useToken from "../../hooks/useToken";
+import useAuth from "./../../hooks/useAuth";
 
 export default function EditNoteForm({ editNote }) {
   //console.log("inside edit note form", editNote);
 
   useToken();
+
+  const { isAdmin, isManager } = useAuth();
 
   const queryClient = useQueryClient();
 
@@ -115,6 +118,20 @@ export default function EditNoteForm({ editNote }) {
 
   const errContent =
     error?.response?.data.message || deleteError?.response?.data.message;
+
+  let deleteButton = null;
+  if (isManager || isAdmin) {
+    deleteButton = (
+      <button
+        className="icon-button"
+        title="Delete"
+        onClick={onDeleteNoteClicked}
+        disabled={deleteIsLoading}
+      >
+        <FontAwesomeIcon icon={faTrashCan} />
+      </button>
+    );
+  }
   return (
     <>
       <p className={errClass}>{errContent}</p>
@@ -131,14 +148,7 @@ export default function EditNoteForm({ editNote }) {
             >
               <FontAwesomeIcon icon={faSave} />
             </button>
-            <button
-              className="icon-button"
-              title="Delete"
-              onClick={onDeleteNoteClicked}
-              disabled={deleteIsLoading}
-            >
-              <FontAwesomeIcon icon={faTrashCan} />
-            </button>
+            {deleteButton}
           </div>
         </div>
         <label className="form__label" htmlFor="note-title">

@@ -2,9 +2,11 @@ import { useQuery } from "@tanstack/react-query";
 import { getAllNotes } from "./queries";
 import Note from "./Note";
 import useToken from "../../hooks/useToken";
+import useAuth from "../../hooks/useAuth";
 
 export default function NotesList() {
   useToken();
+  const { username, isManager, isAdmin } = useAuth();
   const { isLoading, isError, data, error } = useQuery({
     queryKey: ["notes"],
     queryFn: getAllNotes,
@@ -17,6 +19,17 @@ export default function NotesList() {
   if (isError) {
     //console.log(error.response.data.message);
     return <p className="errmsg">{error?.response?.data.message}</p>;
+  }
+
+  let filteredData;
+  if (isManager || isAdmin) {
+    filteredData = [...data];
+  } else {
+    filteredData = data.filter((note) => note.username === username);
+  }
+
+  if (filteredData.length === 0) {
+    return <p className="errmsg">"No notes added yet</p>;
   }
 
   return (
@@ -44,7 +57,7 @@ export default function NotesList() {
         </tr>
       </thead>
       <tbody>
-        {data?.map((note) => (
+        {filteredData?.map((note) => (
           <Note key={note._id} note={note} />
         ))}
       </tbody>

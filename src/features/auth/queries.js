@@ -3,7 +3,7 @@ import axios from "../../config/axios";
 export async function login(username, password) {
   const body = { username, password };
 
-  const res = await axios.post("/auth", body);
+  const res = await axios.post("/auth", body, { withCredentials: true });
 
   return res;
 }
@@ -15,10 +15,13 @@ export async function logout() {
 }
 
 export async function refresh() {
-  //const res = await axios.get("/auth/refresh");
+  console.log("inside refresh 1");
+
   const res = await axios.get("/auth/refresh", {
     withCredentials: true,
   });
 
-  return res.accessToken;
+  console.log("inside refreshn fucntion", res.data.accessToken);
+
+  return res.data.accessToken;
 }
