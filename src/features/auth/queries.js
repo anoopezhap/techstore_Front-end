@@ -15,7 +15,10 @@ export async function logout() {
 }
 
 export async function refresh() {
-  const res = await axios.get("/auth/refresh", { withCredentials: true });
+  //const res = await axios.get("/auth/refresh");
+  const res = await axios.get("/auth/refresh", {
+    withCredentials: true,
+  });
 
   return res.accessToken;
 }

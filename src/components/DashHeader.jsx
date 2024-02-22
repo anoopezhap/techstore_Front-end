@@ -1,7 +1,6 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faRightFromBracket } from "@fortawesome/free-solid-svg-icons";
 import { useNavigate, Link, useLocation } from "react-router-dom";
-import { useEffect } from "react";
 import { useMutation } from "@tanstack/react-query";
 import { logout } from "../features/auth/queries";
 import { useDispatch } from "react-redux";
