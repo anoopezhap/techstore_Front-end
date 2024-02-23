@@ -1,7 +1,7 @@
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSave, faTrashCan } from "@fortawesome/free-solid-svg-icons";
 import { useState, useEffect } from "react";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { ROLES } from "./../../config/roles";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { deleteUser, updateUser } from "./queries";
@@ -120,6 +120,12 @@ export default function EditUserForm({ user }) {
       </option>
     );
   });
+
+  if (isError) {
+    if (error?.response?.status === 401) {
+      return <Navigate to="/login" replace={true} />;
+    }
+  }
 
   const errClass = isError || deleteIsError ? "errmsg" : "offscreen";
   const validUserClass = !validUsername ? "form__input--incomplete" : "";

@@ -4,6 +4,7 @@ import { Link, useNavigate } from "react-router-dom";
 import { setCredentials } from "./../auth/authSlice";
 import { useMutation } from "@tanstack/react-query";
 import { login } from "./queries";
+import usePersist from "../../hooks/usePersist";
 
 export default function Login() {
   const userRef = useRef();
@@ -12,6 +13,8 @@ export default function Login() {
   const [username, setUsername] = useState("admin");
   const [password, setPassword] = useState("1234");
   const [errMsg, setErrMsg] = useState("");
+
+  const [persist, setPersist] = usePersist();
 
   const navigate = useNavigate();
   const dispatch = useDispatch();
@@ -40,7 +43,7 @@ export default function Login() {
       if (!error.response.status) {
         setErrMsg("No Server Response");
       } else if (error.response.status === 400) {
-        setErrMsg("Missing Username or Password");
+        setErrMsg("Invalid Username or Password");
       } else if (error.response.status === 401) {
         setErrMsg("Unauthorized");
       } else {

@@ -3,6 +3,7 @@ import { getAllNotes } from "./queries";
 import Note from "./Note";
 import useToken from "../../hooks/useToken";
 import useAuth from "../../hooks/useAuth";
+import { Navigate } from "react-router-dom";
 
 export default function NotesList() {
   useToken();
@@ -17,6 +18,9 @@ export default function NotesList() {
   }
 
   if (isError) {
+    if (error?.response?.status === 401) {
+      return <Navigate to="/login" replace={true} />;
+    }
     //console.log(error.response.data.message);
     return <p className="errmsg">{error?.response?.data.message}</p>;
   }
@@ -29,7 +33,7 @@ export default function NotesList() {
   }
 
   if (filteredData.length === 0) {
-    return <p className="errmsg">"No notes added yet</p>;
+    return <p className="errmsg">No notes added yet</p>;
   }
 
   return (

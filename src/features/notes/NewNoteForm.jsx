@@ -1,6 +1,6 @@
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 import { faSave } from "@fortawesome/free-solid-svg-icons";
 import { createNewNote } from "./queries";
@@ -51,6 +51,12 @@ export default function NewNoteForm({ userList }) {
   const errClass = isError ? "errmsg" : "offscreen";
   const validTitleClass = !title ? "form__input--incomplete" : "";
   const validTextClass = !text ? "form__input--incomplete" : "";
+
+  if (isError) {
+    if (error?.response?.status === 401) {
+      return <Navigate to="/login" replace={true} />;
+    }
+  }
 
   return (
     <>

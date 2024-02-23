@@ -1,5 +1,5 @@
 import { useQuery, useQueryClient } from "@tanstack/react-query";
-import { useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import EditUserForm from "./EditUserForm";
 import { getAllUsers } from "./queries";
 import { useSelector } from "react-redux";
@@ -28,6 +28,11 @@ export default function EditUser() {
   let user;
   if (!isLoading) {
     user = data?.filter((user) => user._id === id);
+  }
+  if (isError) {
+    if (error?.response?.status === 401) {
+      return <Navigate to="/login" replace={true} />;
+    }
   }
 
   //console.log(user);

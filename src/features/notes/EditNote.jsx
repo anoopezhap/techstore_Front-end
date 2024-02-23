@@ -1,5 +1,5 @@
 import { useQuery } from "@tanstack/react-query";
-import { useParams } from "react-router-dom";
+import { Navigate, useParams } from "react-router-dom";
 import { getAllNotes } from "./queries";
 import EditNoteForm from "./EditNoteForm";
 import useToken from "../../hooks/useToken";
@@ -12,6 +12,12 @@ export default function EditNote() {
     queryKey: ["notes"],
     queryFn: getAllNotes,
   });
+
+  if (isError) {
+    if (error?.response?.status === 401) {
+      return <Navigate to="/login" replace={true} />;
+    }
+  }
 
   let editNote;
 

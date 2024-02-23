@@ -2,6 +2,7 @@ import { useQuery, useQueryClient } from "@tanstack/react-query";
 import NewNoteForm from "./NewNoteForm";
 import { getAllUsers } from "./../users/queries";
 import useToken from "../../hooks/useToken";
+import { Navigate } from "react-router-dom";
 
 export default function NewNote() {
   useToken();
@@ -10,6 +11,12 @@ export default function NewNote() {
     queryKey: ["users"],
     queryFn: getAllUsers,
   });
+
+  if (isError) {
+    if (error?.response?.status === 401) {
+      return <Navigate to="/login" replace={true} />;
+    }
+  }
 
   // const queryClient = useQueryClient();
 

@@ -19,9 +19,9 @@ export async function createUser(username, password, roles) {
 
 export async function updateUser(id, username, roles, active, password) {
   // console.log("password", password);
-  // const body = { username, password, roles, active };
+  //const body = { username, password, roles, active };
   // console.log("inside fn", body);
-
+  let body;
   if (password === undefined) {
     body = { id, username, roles, active };
     //console.log("inside password undefined");

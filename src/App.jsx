@@ -23,6 +23,7 @@ export default function App() {
           <Route index element={<Public />} />
           <Route path="login" element={<Login />} />
           {/* Protected Routes */}
+          {/* <Route element={<PersistLogin />}> */}
           <Route
             element={<RequireAuth allowedRoles={[...Object.values(ROLES)]} />}
           >
@@ -47,6 +48,7 @@ export default function App() {
               </Route>
             </Route>
           </Route>
+          {/* </Route> */}
         </Route>
       </Routes>
     </BrowserRouter>

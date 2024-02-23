@@ -3,7 +3,7 @@ import { getAllUsers } from "./queries";
 import User from "./User";
 import { useSelector } from "react-redux";
 import useToken from "../../hooks/useToken";
-
+import { Navigate } from "react-router-dom";
 export default function UsersList() {
   useToken();
 
@@ -17,6 +17,9 @@ export default function UsersList() {
   }
 
   if (isError) {
+    if (error?.response?.status === 401) {
+      return <Navigate to="/login" replace={true} />;
+    }
     //console.log(error.response.data.message);
     return <p className="errmsg">{error?.response?.data.message}</p>;
   }

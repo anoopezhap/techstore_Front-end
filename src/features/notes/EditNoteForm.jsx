@@ -1,6 +1,6 @@
 import { useMutation, useQuery, useQueryClient } from "@tanstack/react-query";
 import { useState } from "react";
-import { useNavigate } from "react-router-dom";
+import { Navigate, useNavigate } from "react-router-dom";
 import { getAllUsers } from "../users/queries";
 import { deleteNote, updateNote } from "./queries";
 import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
@@ -80,7 +80,7 @@ export default function EditNoteForm({ editNote }) {
   };
 
   const onDeleteNoteClicked = () => {
-    console.log("inside delete");
+    //console.log("inside delete");
     const body = { id: editNote._id };
     //console.log("inside delete", body);
     deleteMutate(body);
@@ -111,6 +111,12 @@ export default function EditNoteForm({ editNote }) {
       </option>
     );
   });
+
+  if (isError) {
+    if (error?.response?.status === 401) {
+      return <Navigate to="/login" replace={true} />;
+    }
+  }
 
   const errClass = isError || deleteIsError ? "errmsg" : "offscreen";
   const validTitleClass = !title ? "form__input--incomplete" : "";

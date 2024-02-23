@@ -15,13 +15,10 @@ export async function logout() {
 }
 
 export async function refresh() {
-  console.log("inside refresh 1");
-
+  //console.log("inside refresh function");
   const res = await axios.get("/auth/refresh", {
     withCredentials: true,
   });
-
-  console.log("inside refreshn fucntion", res.data.accessToken);
 
   return res.data.accessToken;
 }

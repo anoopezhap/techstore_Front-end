@@ -1,4 +1,4 @@
-import axiois from "./../config/axios";
+import axios from "./../config/axios";
 import useToken from "./useToken";
 import { UseDispatch } from "react-redux";
 
