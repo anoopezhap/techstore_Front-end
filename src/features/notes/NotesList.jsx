@@ -4,8 +4,10 @@ import Note from "./Note";
 import useToken from "../../hooks/useToken";
 import useAuth from "../../hooks/useAuth";
 import { Navigate } from "react-router-dom";
+import useTitle from "../../hooks/useTitle";
 
 export default function NotesList() {
+  useTitle("Notes List");
   useToken();
   const { username, isManager, isAdmin } = useAuth();
   const { isLoading, isError, data, error } = useQuery({

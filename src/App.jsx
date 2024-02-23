@@ -13,8 +13,10 @@ import EditNote from "./features/notes/EditNote";
 import NewNote from "./features/notes/NewNote";
 import RequireAuth from "./features/auth/RequireAuth";
 import { ROLES } from "./config/roles";
+import useTitle from "./hooks/useTitle";
 
 export default function App() {
+  useTitle("Your Repairs");
   return (
     <BrowserRouter>
       <Routes>

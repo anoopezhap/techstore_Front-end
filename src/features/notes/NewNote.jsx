@@ -3,8 +3,10 @@ import NewNoteForm from "./NewNoteForm";
 import { getAllUsers } from "./../users/queries";
 import useToken from "../../hooks/useToken";
 import { Navigate } from "react-router-dom";
+import useTitle from "../../hooks/useTitle";
 
 export default function NewNote() {
+  useTitle("Add New Note");
   useToken();
 
   const { isLoading, isError, data, error } = useQuery({

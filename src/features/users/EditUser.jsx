@@ -4,8 +4,10 @@ import EditUserForm from "./EditUserForm";
 import { getAllUsers } from "./queries";
 import { useSelector } from "react-redux";
 import useToken from "../../hooks/useToken";
+import useTitle from "../../hooks/useTitle";
 
 export default function EditUser() {
+  useTitle("Edit User");
   const { id } = useParams();
   const { token } = useSelector((state) => state.auth);
 

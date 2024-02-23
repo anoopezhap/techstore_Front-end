@@ -15,6 +15,8 @@ import store from "./store.js";
 import { refresh } from "./features/auth/queries.js";
 import { Navigate } from "react-router-dom";
 
+import { disableReactDevTools } from "@fvilers/disable-react-devtools";
+
 const queryClient = new QueryClient({
   defaultOptions: {
     queries: {
@@ -38,6 +40,8 @@ const queryClient = new QueryClient({
   //   },
   // }),
 });
+
+disableReactDevTools();
 
 ReactDOM.createRoot(document.getElementById("root")).render(
   <React.StrictMode>

@@ -3,8 +3,9 @@ import { Navigate, useParams } from "react-router-dom";
 import { getAllNotes } from "./queries";
 import EditNoteForm from "./EditNoteForm";
 import useToken from "../../hooks/useToken";
-
+import useTitle from "../../hooks/useTitle";
 export default function EditNote() {
+  useTitle("Edit Note");
   const { id } = useParams();
   useToken();
 

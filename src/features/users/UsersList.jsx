@@ -4,7 +4,9 @@ import User from "./User";
 import { useSelector } from "react-redux";
 import useToken from "../../hooks/useToken";
 import { Navigate } from "react-router-dom";
+import useTitle from "../../hooks/useTitle";
 export default function UsersList() {
+  useTitle("Users List");
   useToken();
 
   const { isLoading, isError, data, error } = useQuery({

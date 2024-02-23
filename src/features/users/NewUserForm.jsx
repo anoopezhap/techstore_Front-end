@@ -6,11 +6,13 @@ import { ROLES } from "./../../config/roles";
 import { useMutation, useQueryClient } from "@tanstack/react-query";
 import { createUser } from "./queries";
 import useToken from "../../hooks/useToken";
+import useTitle from "../../hooks/useTitle";
 
 const USER_REGEX = /^[A-z]{3,20}$/;
 const PWD_REGEX = /^[A-z0-9!@#$%]{4,12}$/;
 
 export default function NewUserForm() {
+  useTitle("Add New User");
   const queryClient = useQueryClient();
   const navigate = useNavigate();
 

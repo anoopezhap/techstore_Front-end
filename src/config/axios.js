@@ -3,7 +3,7 @@ import store from "./../store";
 import { setCredentials } from "./../features/auth/authSlice";
 
 const instance = axios.create({
-  baseURL: "http://localhost:3500",
+  baseURL: "https://yourrepairs-api.onrender.com",
 });
 
 instance.interceptors.response.use(
