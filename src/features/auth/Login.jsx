@@ -10,8 +10,8 @@ export default function Login() {
   const userRef = useRef();
   const errRef = useRef();
 
-  const [username, setUsername] = useState("admin");
-  const [password, setPassword] = useState("1234");
+  const [username, setUsername] = useState("");
+  const [password, setPassword] = useState("");
   const [errMsg, setErrMsg] = useState("");
 
   const [persist, setPersist] = usePersist();
